@@ -1,17 +1,15 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  const seenNumbers = new Set(); // initialize an empty Set
+  for (const number of array) {
+    const complement = target - number;
 
-  for (var i = 0; i < array.length; i++){
-    for (var x = i + 1 ; x < array.length; x++){
-      if ((array[i]+array[x]) === target){
-        return true
-      }else{
-        return false
-      }
+    // .has returns true if the Set includes the complement
+    if (seenNumbers.has(complement)) return true;
 
-    }
-
+    // .add adds the number to the Set
+    seenNumbers.add(number);
   }
+  return false;
 }
 console.log(hasTargetSum([5,5], 10))
 console.log(hasTargetSum([3, 8, 12, 4, 11, 7], 10))
